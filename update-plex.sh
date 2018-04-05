@@ -1,4 +1,17 @@
-#!/bin/bash
+#!/bin/sh
+
+missing=0
+
+for dep in dpkg wget; do
+        if [ ! -x $(which $dep) ]; then
+                echo "Missing $dep"
+                missing=1
+        fi
+done
+
+if [ $missing -eq 0 ]; then
+        exit
+fi
 
 DATE=$(date +%Y%m%d)
 
